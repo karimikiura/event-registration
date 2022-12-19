@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <h2>{{ event.name }}</h2>
+    <p>{{ event.description }}</p>
+    
+    {% if registered %} 
+    <div class="alert alert-info">
+        <strong>You've already Registered for this event.</strong>
+        <button class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    {% else %}
+        <a href="{% url 'event:confirmation' event.id %}" class="disabled">Register</a>
+    {% endif %}
+    
+    {% if submitted %}
+    <div class="alert alert-info" role="alert">
+        <strong>You've already submitted for this project.</strong>
+        <button class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+    </div>
+    {% else %}
+        <a href="{% url 'event:submission' event.id %}" class="submitted">Submit Project</a>   
+    {% endif %}
+        
+
+    <div>
+        <h3>Event Participants</h3>
+        <div>
+            
+            {% for user in event.participants.all %}
+                <div>
+                    <strong>{{ user.first_name }}</strong>
+                </div>
+            {% endfor %}
+                
+        </div>
+    </div>
+{% endblock content %}
+
+
+{% block script %}
+    <script> 
+        // const disabled = document.querySelector('.disabled')
+        // disabled.href="javascript:alert('You\\'ve already registered for this event.')";
+
+        // let submitted = document.querySelector('.submitted')
+        // submitted.href="javascript:alert('You\\'ve already made a submission on this project.')";
+    </script>
+{% endblock script %}
+
+    

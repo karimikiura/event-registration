@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <form action="" method="post">{% csrf_token %}
+        <a href="{% url 'event:event' event.id %}">Go Back</a>
+
+        <input type="hidden" name="event" value="{{ event.id }}">
+        <input type="submit" value="Confirm">
+    </form>
+{% endblock content %}
+    

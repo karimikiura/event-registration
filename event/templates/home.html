@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <h1>Home Page</h1>
+
+    <section>
+        <h3>Events</h3>
+        <div id="event-lists">
+            
+            {% for event in events %}
+                <a href="{% url 'event:event' event.id %}">
+                    <div>
+                        {{ event.name }}
+                    </div>
+                </a>
+            {% endfor %}
+                
+        </div>
+    </section>
+
+    <section>
+        <h3>Users</h3>
+        
+        {% for user in users %}
+            <a href="{% url 'event:profile' user.id %}">
+                <div>
+                    {{ user.first_name }}
+                </div>
+            </a>
+        {% endfor %}
+            
+    </section>
+{% endblock content %}
+    
